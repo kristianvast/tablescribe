@@ -1,0 +1,40 @@
+/* after.js: ended screen + history drawer. Tokens and shared components come from style.css. */
+
+.ended-meta time { color: var(--text-2); }
+.ended-meta .mono { color: var(--text-3); }
+.minutes .empty { padding: var(--s-3) 0; }
+.player { padding-top: var(--s-1); }
+
+.transcript-ended .tgroup { padding-top: var(--s-2); }
+.transcript-ended .tgroup-head .spk-name { font-size: var(--fs-small); }
+
+.meeting-row[aria-current="true"] { background: var(--accent-wash); }
+.meeting-row[aria-current="true"] .meeting-title { color: var(--text-1); }
+
+.hit { gap: var(--s-1); }
+.hit-meta { min-width: 0; flex-wrap: nowrap; white-space: nowrap; align-items: baseline; }
+.hit-meta > :not(.hit-title) { flex: none; }
+.hit-title { color: var(--text-1); font-weight: 500; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hit-time { color: var(--accent); font: 500 var(--fs-caption) / 1.4 var(--font-mono); font-variant-numeric: tabular-nums; }
+.hit-snippet { font-size: var(--fs-small); line-height: 1.45; }
+.hit-snippet mark { font-weight: 500; }
+
+.skel {
+  height: var(--control-h-lg);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  animation: skel-pulse var(--t-pulse) ease-in-out infinite;
+}
+@keyframes skel-pulse { 50% { opacity: 0.45; } }
+
+.drawer .chat { max-height: 48vh; }
+.drawer .chat-panel { flex: none; }
+.drawer .msg-a .md > .empty { padding: 0; }
+
+@media (max-width: 900px) {
+  .drawer .chat { max-height: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skel { animation: none; opacity: 0.7; }
+}

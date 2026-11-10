@@ -1,0 +1,63 @@
+/* live.js additions on top of the shared components in style.css (MODULES.md ownership). */
+
+/* ---- agenda ---- */
+.agenda-idx .ic { width: 14px; height: 14px; fill: currentColor; stroke: none; }
+.agenda-item.is-current .agenda-idx { display: inline-flex; justify-content: center; color: var(--accent); }
+button.agenda-item { cursor: pointer; font: inherit; }
+.agenda-item .agenda-time:empty::before { content: "\2013"; color: var(--text-4); }
+
+/* ---- roster ---- */
+button.person-name {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: var(--r-sm);
+}
+button.person-name:disabled { cursor: default; }
+button.person-name:not(:disabled):hover { color: var(--accent-hover); }
+.person-meta { font-size: var(--fs-caption); color: var(--text-4); flex: none; }
+.person .spk-dot { width: 12px; height: 12px; }
+
+/* ---- roll call ---- */
+.roll-item .roll-rename-btn { flex: none; color: var(--text-3); }
+.roll-item .roll-rename-btn:hover { color: var(--text-1); }
+.roll-item .roll-rename {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--control-h);
+  height: var(--control-h);
+  padding: 0 var(--s-2);
+  font-size: var(--fs-body);
+  font-weight: 600;
+}
+body[data-control="true"] .roll-item-name { cursor: text; }
+.roll-feed-line { min-width: 0; }
+.roll-feed-line .spk-name { flex: none; }
+.roll-feed-line .roll-feed-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---- setup ---- */
+.chips-input .chip { flex: none; }
+.chip .chip-x { flex: none; }
+
+/* ---- transcript ---- */
+.line:focus-visible { box-shadow: var(--ring); outline: none; }
+.bookmark-mark {
+  cursor: pointer;
+  border-radius: var(--r-sm);
+  transition: background-color var(--t-micro) ease-out;
+}
+.bookmark-mark:hover { background: var(--warn-wash); }
+.bookmark-mark:focus-visible { box-shadow: var(--ring); outline: none; }
+
+/* ---- top bar ---- */
+.readout .sep { color: var(--text-4); margin: 0 var(--s-1); }
+#tb-bookmark.is-flash { background: var(--warn-wash); border-color: color-mix(in srgb, var(--warn) 40%, transparent); color: var(--warn); }
+
+@media (max-width: 900px) {
+  .roll-item .roll-rename { min-height: var(--control-h-lg); height: var(--control-h-lg); }
+  .person-meta { display: none; }
+}

@@ -1,0 +1,25 @@
+#!/bin/bash
+# Start tablescribe: ./meeting [--source mic|mic:<device>|file:<path>] [--port 8000] [--no-browser]
+set -euo pipefail
+cd "$(dirname "$0")"
+export PATH="/opt/homebrew/bin:$PATH"
+
+for tool in uv ffmpeg ollama; do
+  command -v "$tool" >/dev/null || { echo "missing $tool: brew install $tool" >&2; exit 1; }
+done
+
+if ! curl -fsS --max-time 2 http://127.0.0.1:11434/api/tags >/dev/null 2>&1; then
+  echo "starting Ollama..."
+  brew services start ollama >/dev/null
+  for _ in $(seq 1 20); do
+    curl -fsS --max-time 1 http://127.0.0.1:11434/api/tags >/dev/null 2>&1 && break
+    sleep 0.5
+  done
+fi
+
+model="${MC_LLM_MODEL:-nemotron-3.5-lightning}"
+if ! ollama list 2>/dev/null | awk 'NR>1 {print $1}' | grep -qE "^${model}(:latest)?$"; then
+  echo "warning: LLM '$model' is not pulled; notes/ask/minutes will fail until: ollama pull $model" >&2
+fi
+
+exec uv run python -m app "$@"

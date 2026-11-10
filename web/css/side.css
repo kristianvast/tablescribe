@@ -1,0 +1,60 @@
+/* web/css/side.css - right column (side.js). Shared components live in style.css; every value
+   here is a token from DESIGN.md. */
+
+/* Actions */
+.action-main { min-width: 0; }
+.action-due {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.action-due .ic { width: 13px; height: 13px; }
+.chip-owner { padding-left: var(--s-2); }
+.chip-owner .spk-dot { width: 8px; height: 8px; box-shadow: none; }
+
+/* People notes */
+.pn-list { display: flex; flex-direction: column; gap: var(--s-1); }
+.pn-body .empty { padding: 0; }
+.pn-actions .btn-sm {
+  padding: 0 var(--s-2);
+  gap: var(--s-1);
+  color: var(--text-3);
+}
+.pn-actions .btn-sm:hover { color: var(--text-1); }
+.pn-actions .btn-sm .ic { width: 13px; height: 13px; }
+
+/* Fact-checks */
+.fact-claim {
+  margin: 0;
+  padding: 0 0 0 var(--s-3);
+  border-left: 2px solid var(--border-strong);
+  quotes: "\201C" "\201D";
+}
+.fact-claim::before { content: open-quote; color: var(--text-4); }
+.fact-claim::after { content: close-quote; color: var(--text-4); }
+.fact-top .btn-subtle { color: var(--text-3); }
+.fact-top .btn-subtle:hover { color: var(--text-1); }
+.fact-who .ts-link { margin-left: var(--s-1); }
+
+/* My notes */
+.badge-bad { background: var(--bad-wash); color: var(--bad); }
+.notes-readonly .empty { padding: 0; }
+
+/* Ask chat */
+.msg-wait { color: var(--text-3); }
+.msg-tools {
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: opacity var(--t-micro) ease-out;
+}
+.msg-tools .btn { color: var(--text-3); }
+.msg-tools .btn:hover { color: var(--text-1); }
+.msg-a:hover .msg-tools,
+.msg-a:focus-within .msg-tools { opacity: 1; }
+
+@media (hover: none), (max-width: 900px) {
+  .msg-tools { opacity: 1; }
+}

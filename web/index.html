@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="referrer" content="no-referrer">
+<title>Tablescribe</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/css/live.css">
+<link rel="stylesheet" href="/static/css/side.css">
+<link rel="stylesheet" href="/static/css/after.css">
+</head>
+<body data-state="connecting" data-control="false" data-mtab="transcript" data-rtab="notes">
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5.5v13l11-6.5z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 21V4m0 0h11l-2.5 4L17 12H6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.3-4.3"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14m0 0-6-6m6 6 6-6"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 5h5v5M19 5l-8 8M19 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-xcirc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m9 9 6 6m0-6-6 6"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5V14"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20h4l10.5-10.5a1.5 1.5 0 0 0 0-2.1l-1.9-1.9a1.5 1.5 0 0 0-2.1 0L4 16z"/><path d="m13 7 4 4"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12 20 4l-4 16-4-7z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="4" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v3"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 6.5A1.5 1.5 0 0 1 6.5 5h11A1.5 1.5 0 0 1 19 6.5v8a1.5 1.5 0 0 1-1.5 1.5H10l-4 3.5V16H6.5A1.5 1.5 0 0 1 5 14.5z"/></symbol>
+  <symbol id="i-notes" viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></symbol>
+  <symbol id="i-lines" viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h13"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5m0 0 6-6m-6 6 6 6"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4.5h-4.5"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M4 12h2l2-5 3 10 3-8 2 5 2-2h2"/></symbol>
+  <symbol id="i-spinner" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 1-8.5 8.5"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1 1"/><path d="M14 10a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1-1"/></symbol>
+</svg>
+
+<div class="atmosphere" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-left">
+    <span class="brand" aria-hidden="true"><svg class="ic"><use href="#i-wave"/></svg></span>
+    <h1 class="topbar-title" id="tb-title">Tablescribe</h1>
+    <span class="pill-state" id="tb-state" data-state="idle">Idle</span>
+    <span class="badge badge-view" id="tb-viewing" hidden title="This screen can watch but not control the meeting">Viewing</span>
+  </div>
+  <div class="topbar-center">
+    <span class="rec" id="tb-rec" hidden><span class="rec-dot" aria-hidden="true"></span><span class="sr-only">Recording, elapsed</span><span class="mono rec-time" id="tb-elapsed">00:00:00</span></span>
+    <span class="readout mono" id="tb-readout" hidden title="Real-time factor and end-to-end latency"></span>
+  </div>
+  <div class="topbar-right">
+    <button class="btn btn-ghost btn-sm" id="tb-bookmark" type="button" data-control hidden><svg class="ic"><use href="#i-flag"/></svg><span>Bookmark</span><kbd class="kbd">B</kbd></button>
+    <button class="btn btn-ghost btn-sm" id="tb-copyall" type="button" hidden><svg class="ic"><use href="#i-copy"/></svg><span>Copy all</span></button>
+    <button class="btn btn-ghost btn-sm btn-icon" id="tb-history" type="button" aria-label="History" title="History"><svg class="ic"><use href="#i-clock"/></svg></button>
+    <button class="btn btn-danger btn-sm" id="tb-stop" type="button" data-control hidden><svg class="ic"><use href="#i-stop"/></svg><span>Stop</span></button>
+  </div>
+</header>
+<div class="conn" id="conn" role="status" hidden><svg class="ic spin"><use href="#i-spinner"/></svg><span id="conn-text">Reconnecting...</span></div>
+
+<main id="main" class="main">
+  <section class="screen screen-setup" id="screen-setup" hidden>
+    <div class="setup-card" id="setup-card">
+      <div class="setup-head">
+        <span class="overline">New meeting</span>
+        <h2 class="h1">Set up the room</h2>
+        <p class="lede">Names and jargon become hotwords for the transcriber. The roll call maps voices to names.</p>
+      </div>
+      <form id="setup-form" class="stack-5" autocomplete="off" novalidate>
+        <div class="field">
+          <label for="f-title">Meeting title</label>
+          <input class="input" id="f-title" name="title" type="text" placeholder="Weekly product sync" required>
+        </div>
+        <div class="field">
+          <label for="f-participants">Participants</label>
+          <div class="chips-input" id="chips-participants" data-placeholder="Type a name, press Enter">
+            <input class="chips-field" id="f-participants" type="text" placeholder="Type a name, press Enter" aria-describedby="f-participants-hint">
+          </div>
+          <span class="hint" id="f-participants-hint">Everyone around the table. Enter or comma adds a chip.</span>
+        </div>
+        <div class="field">
+          <label for="f-hotwords">Hotwords and jargon</label>
+          <div class="chips-input" id="chips-hotwords">
+            <input class="chips-field" id="f-hotwords" type="text" placeholder="Kubernetes, Q3 OKRs, Acme">
+          </div>
+          <span class="hint">Product names, acronyms, surnames the model should spell right.</span>
+        </div>
+        <div class="field">
+          <label for="f-agenda">Agenda</label>
+          <textarea class="textarea" id="f-agenda" rows="4" placeholder="One item per line&#10;1. Review last week&#10;2. Launch plan"></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="f-template">Minutes template</label>
+            <select class="select" id="f-template"></select>
+          </div>
+          <div class="field">
+            <label for="f-device">Input device</label>
+            <select class="select" id="f-device"></select>
+          </div>
+        </div>
+        <div class="setup-actions">
+          <button class="btn btn-subtle" type="button" id="setup-history"><svg class="ic"><use href="#i-clock"/></svg><span>History</span></button>
+          <button class="btn btn-primary btn-lg" type="submit" id="setup-start"><svg class="ic"><use href="#i-mic"/></svg><span>Start meeting</span></button>
+        </div>
+        <p class="form-error" id="setup-error" role="alert" hidden></p>
+      </form>
+    </div>
+    <div class="setup-viewer" id="setup-viewer" hidden>
+      <span class="overline">Standing by</span>
+      <h2 class="h1">Waiting for the host to start a meeting</h2>
+      <p class="lede">This screen follows the room. You can browse and search past meetings meanwhile.</p>
+      <button class="btn btn-ghost" type="button" id="viewer-history"><svg class="ic"><use href="#i-clock"/></svg><span>History</span></button>
+    </div>
+  </section>
+  <section class="screen screen-rollcall" id="screen-rollcall" hidden>
+    <div class="rollcall">
+      <span class="overline">Roll call</span>
+      <h2 class="display">Go around the table. Each person says: <em>"I'm &lt;name&gt;"</em></h2>
+      <p class="lede">Voices are matched to names as people speak. Rename anyone whose name was misheard.</p>
+      <ul class="roll-list" id="roll-list" aria-label="Detected speakers"></ul>
+      <p class="roll-empty" id="roll-empty">Listening for the first voice...</p>
+      <div class="roll-feed" id="roll-feed" aria-label="Recent lines"></div>
+      <div class="roll-actions">
+        <button class="btn btn-primary btn-lg" type="button" id="roll-done" data-control><svg class="ic"><use href="#i-play"/></svg><span>Start meeting</span></button>
+      </div>
+    </div>
+  </section>
+  <section class="screen screen-live" id="screen-live" hidden>
+    <aside class="col col-left" id="col-left" aria-label="Agenda and people">
+      <section class="panel" id="panel-agenda">
+        <header class="panel-head">
+          <h2 class="overline">Agenda</h2>
+          <span class="badge" id="agenda-count" hidden></span>
+          <div class="panel-actions">
+            <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="agenda" aria-label="Copy agenda" title="Copy agenda"><svg class="ic"><use href="#i-copy"/></svg></button>
+          </div>
+        </header>
+        <ol class="agenda" id="agenda-list"></ol>
+        <p class="empty" id="agenda-empty">No agenda for this meeting.</p>
+      </section>
+      <section class="panel" id="panel-people">
+        <header class="panel-head">
+          <h2 class="overline">People</h2>
+          <span class="badge" id="people-count" hidden></span>
+          <div class="panel-actions">
+            <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="people" aria-label="Copy people" title="Copy people"><svg class="ic"><use href="#i-copy"/></svg></button>
+          </div>
+        </header>
+        <ul class="roster" id="roster"></ul>
+        <p class="empty" id="roster-empty">No speakers yet.</p>
+      </section>
+    </aside>
+
+    <div class="col col-center" id="col-center">
+      <div class="transcript-wrap">
+        <header class="panel-head transcript-head">
+          <h2 class="overline">Live transcript</h2>
+          <span class="badge" id="transcript-count" hidden></span>
+          <div class="panel-actions">
+            <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="transcript" aria-label="Copy transcript" title="Copy transcript"><svg class="ic"><use href="#i-copy"/></svg></button>
+          </div>
+        </header>
+        <div class="transcript" id="transcript" tabindex="0" aria-label="Live transcript"></div>
+        <p class="empty transcript-empty" id="transcript-empty">Waiting for the first words...</p>
+        <button class="pill-float" id="jump-live" type="button" hidden><svg class="ic"><use href="#i-down"/></svg><span>Jump to live</span><kbd class="kbd">J</kbd></button>
+      </div>
+    </div>
+
+    <aside class="col col-right" id="col-right" aria-label="Notes, fact-checks and questions">
+      <div class="tabs" id="rtabs" role="tablist" aria-label="Side panels">
+        <button class="tab" role="tab" type="button" data-rtab="notes" aria-selected="true" id="rtab-notes">Notes</button>
+        <button class="tab" role="tab" type="button" data-rtab="facts" aria-selected="false" id="rtab-facts">Facts <span class="badge tab-badge" id="facts-count" hidden></span></button>
+        <button class="tab" role="tab" type="button" data-rtab="mine" aria-selected="false" id="rtab-mine">My notes</button>
+        <button class="tab" role="tab" type="button" data-rtab="ask" aria-selected="false" id="rtab-ask">Ask</button>
+      </div>
+
+      <div class="pane" id="pane-notes" role="tabpanel" aria-labelledby="rtab-notes">
+        <section class="panel">
+          <header class="panel-head">
+            <h2 class="overline">Actions</h2>
+            <span class="badge" id="actions-count" hidden></span>
+            <div class="panel-actions">
+              <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="actions" aria-label="Copy actions" title="Copy actions"><svg class="ic"><use href="#i-copy"/></svg></button>
+            </div>
+          </header>
+          <ul class="actions" id="actions-list"></ul>
+          <p class="empty" id="actions-empty">No action items yet. They appear as the notes loop runs (about every minute).</p>
+        </section>
+        <section class="panel">
+          <header class="panel-head">
+            <h2 class="overline">Decisions</h2>
+            <span class="badge" id="decisions-count" hidden></span>
+            <div class="panel-actions">
+              <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="decisions" aria-label="Copy decisions" title="Copy decisions"><svg class="ic"><use href="#i-copy"/></svg></button>
+            </div>
+          </header>
+          <ul class="decisions" id="decisions-list"></ul>
+          <p class="empty" id="decisions-empty">No decisions recorded yet.</p>
+        </section>
+        <section class="panel">
+          <header class="panel-head">
+            <h2 class="overline">People notes</h2>
+            <div class="panel-actions">
+              <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="people-notes" aria-label="Copy people notes" title="Copy people notes"><svg class="ic"><use href="#i-copy"/></svg></button>
+            </div>
+          </header>
+          <div class="people-notes" id="people-notes"></div>
+          <p class="empty" id="people-notes-empty">Per-person notes appear once people have spoken.</p>
+        </section>
+      </div>
+
+      <div class="pane" id="pane-facts" role="tabpanel" aria-labelledby="rtab-facts" hidden>
+        <section class="panel">
+          <header class="panel-head">
+            <h2 class="overline">Fact-checks</h2>
+            <div class="panel-actions">
+              <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="facts" aria-label="Copy fact-checks" title="Copy fact-checks"><svg class="ic"><use href="#i-copy"/></svg></button>
+            </div>
+          </header>
+          <div class="facts" id="facts-list"></div>
+          <p class="empty" id="facts-empty">Checkable claims are looked up as they are made. Nothing to verify yet.</p>
+        </section>
+      </div>
+
+      <div class="pane" id="pane-mine" role="tabpanel" aria-labelledby="rtab-mine" hidden>
+        <section class="panel panel-fill">
+          <header class="panel-head">
+            <h2 class="overline">My notes</h2>
+            <span class="badge" id="mine-status" hidden>Saved</span>
+            <div class="panel-actions">
+              <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="mine" aria-label="Copy my notes" title="Copy my notes"><svg class="ic"><use href="#i-copy"/></svg></button>
+            </div>
+          </header>
+          <label class="sr-only" for="my-notes">My notes</label>
+          <textarea class="textarea notes-area" id="my-notes" placeholder="Your own notes. They are fed to the notes loop and the minutes. Press N to jump here." spellcheck="true"></textarea>
+          <div class="md notes-readonly" id="my-notes-view" hidden></div>
+        </section>
+      </div>
+
+      <div class="pane pane-ask" id="pane-ask" role="tabpanel" aria-labelledby="rtab-ask" hidden>
+        <section class="panel panel-fill chat-panel">
+          <header class="panel-head">
+            <h2 class="overline">Ask</h2>
+            <div class="panel-actions">
+              <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="ask" aria-label="Copy conversation" title="Copy conversation"><svg class="ic"><use href="#i-copy"/></svg></button>
+            </div>
+          </header>
+          <div class="chat" id="chat-live" aria-live="polite"></div>
+          <p class="empty" id="chat-live-empty">Ask about what was said. Answers cite timestamps you can click to replay.</p>
+          <form class="composer" id="ask-form">
+            <div class="seg" role="group" aria-label="Scope">
+              <button class="seg-btn is-on" type="button" data-scope="meeting" aria-pressed="true">This meeting</button>
+              <button class="seg-btn" type="button" data-scope="all" aria-pressed="false">All meetings</button>
+            </div>
+            <div class="composer-row">
+              <label class="sr-only" for="ask-input">Question</label>
+              <input class="input" id="ask-input" type="text" placeholder="What did we decide about pricing? ( / )" autocomplete="off">
+              <button class="btn btn-primary btn-icon" type="submit" aria-label="Send question" title="Send"><svg class="ic"><use href="#i-send"/></svg></button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </aside>
+  </section>
+  <section class="screen screen-ended" id="screen-ended" hidden>
+    <div class="ended-head">
+      <div class="ended-titleblock">
+        <button class="btn btn-subtle btn-sm" type="button" id="ended-back" hidden><svg class="ic"><use href="#i-back"/></svg><span>Back to current</span></button>
+        <span class="overline" id="ended-overline">Minutes</span>
+        <h2 class="h1" id="ended-title">Meeting</h2>
+        <p class="ended-meta" id="ended-meta"></p>
+      </div>
+      <div class="ended-actions">
+        <button class="btn btn-ghost btn-sm" type="button" id="ended-history"><svg class="ic"><use href="#i-clock"/></svg><span>History</span></button>
+        <button class="btn btn-primary btn-sm" type="button" id="ended-new" data-control><svg class="ic"><use href="#i-plus"/></svg><span>New meeting</span></button>
+      </div>
+    </div>
+    <div class="ended-grid">
+      <section class="panel minutes-panel">
+        <header class="panel-head">
+          <h2 class="overline">Minutes</h2>
+          <span class="badge" id="minutes-template-badge" hidden></span>
+          <div class="panel-actions wrap">
+            <label class="sr-only" for="minutes-template">Template</label>
+            <select class="select select-sm" id="minutes-template" data-control></select>
+            <button class="btn btn-subtle btn-sm" type="button" id="minutes-copy-rich"><svg class="ic"><use href="#i-copy"/></svg><span>Copy as rich text</span></button>
+            <button class="btn btn-subtle btn-sm" type="button" id="minutes-copy-md"><svg class="ic"><use href="#i-copy"/></svg><span>Copy Markdown</span></button>
+            <button class="btn btn-subtle btn-sm" type="button" id="minutes-download"><svg class="ic"><use href="#i-download"/></svg><span>Download .md</span></button>
+          </div>
+        </header>
+        <div class="minutes-status" id="minutes-status" hidden><svg class="ic spin"><use href="#i-spinner"/></svg><span>Writing minutes...</span></div>
+        <article class="md minutes" id="minutes"></article>
+      </section>
+      <aside class="ended-side">
+        <section class="panel">
+          <header class="panel-head">
+            <h2 class="overline">Recording</h2>
+            <span class="badge mono" id="audio-pos" hidden>00:00</span>
+          </header>
+          <div class="player">
+            <audio id="audio" controls preload="metadata"></audio>
+          </div>
+        </section>
+        <section class="panel">
+          <header class="panel-head">
+            <h2 class="overline">Transcript</h2>
+            <span class="badge" id="ended-transcript-count" hidden></span>
+            <div class="panel-actions">
+              <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="transcript" aria-label="Copy transcript" title="Copy transcript"><svg class="ic"><use href="#i-copy"/></svg></button>
+            </div>
+          </header>
+          <div class="transcript transcript-ended" id="transcript-ended"></div>
+          <p class="empty" id="transcript-ended-empty">No transcript was recorded.</p>
+        </section>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<nav class="tabbar" id="tabbar" aria-label="Sections" hidden>
+  <button class="tabbar-btn is-on" type="button" data-mtab="transcript" aria-pressed="true"><svg class="ic"><use href="#i-lines"/></svg><span>Transcript</span></button>
+  <button class="tabbar-btn" type="button" data-mtab="notes" aria-pressed="false"><svg class="ic"><use href="#i-notes"/></svg><span>Notes</span></button>
+  <button class="tabbar-btn" type="button" data-mtab="ask" aria-pressed="false"><svg class="ic"><use href="#i-chat"/></svg><span>Ask</span></button>
+</nav>
+<div class="scrim" id="drawer-scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+  <header class="drawer-head">
+    <h2 class="title" id="drawer-title">History</h2>
+    <button class="btn btn-subtle btn-icon" type="button" id="drawer-close" aria-label="Close history" title="Close (Esc)"><svg class="ic"><use href="#i-x"/></svg></button>
+  </header>
+  <div class="drawer-body">
+    <div class="search">
+      <svg class="ic search-ic" aria-hidden="true"><use href="#i-search"/></svg>
+      <label class="sr-only" for="search-input">Search past meetings</label>
+      <input class="input" id="search-input" type="search" placeholder="Search every transcript and minutes" autocomplete="off">
+    </div>
+    <section class="panel" id="search-panel" hidden>
+      <header class="panel-head"><h2 class="overline">Results</h2><span class="badge" id="search-count"></span></header>
+      <ul class="hits" id="search-hits"></ul>
+      <p class="empty" id="search-empty" hidden>No matches. Try a shorter or different word.</p>
+    </section>
+    <section class="panel" id="meetings-panel">
+      <header class="panel-head"><h2 class="overline">Meetings</h2><span class="badge" id="meetings-count" hidden></span></header>
+      <ul class="meetings" id="meetings-list"></ul>
+      <p class="empty" id="meetings-empty">No past meetings yet.</p>
+    </section>
+    <section class="panel chat-panel">
+      <header class="panel-head">
+        <h2 class="overline">Ask across meetings</h2>
+        <div class="panel-actions">
+          <button class="btn btn-subtle btn-icon btn-sm" type="button" data-copy="ask-all" aria-label="Copy conversation" title="Copy conversation"><svg class="ic"><use href="#i-copy"/></svg></button>
+        </div>
+      </header>
+      <div class="chat" id="chat-all" aria-live="polite"></div>
+      <p class="empty" id="chat-all-empty">Questions here search every indexed meeting.</p>
+      <form class="composer" id="ask-all-form">
+        <div class="composer-row">
+          <label class="sr-only" for="ask-all-input">Question across meetings</label>
+          <input class="input" id="ask-all-input" type="text" placeholder="When did we last discuss the budget?" autocomplete="off">
+          <button class="btn btn-primary btn-icon" type="submit" aria-label="Send question" title="Send"><svg class="ic"><use href="#i-send"/></svg></button>
+        </div>
+      </form>
+    </section>
+  </div>
+</aside>
+<div class="scrim scrim-dialog" id="dialog-stop" role="dialog" aria-modal="true" aria-labelledby="dialog-stop-title" aria-describedby="dialog-stop-desc">
+  <div class="dialog">
+    <h2 class="h2" id="dialog-stop-title">Stop the meeting?</h2>
+    <p class="dialog-desc" id="dialog-stop-desc">Recording ends, the minutes are written, and the transcript is saved to disk.</p>
+    <div class="dialog-actions">
+      <button class="btn btn-ghost" type="button" id="dialog-stop-cancel">Keep going</button>
+      <button class="btn btn-danger-solid" type="button" id="dialog-stop-confirm"><svg class="ic"><use href="#i-stop"/></svg><span>Stop and write minutes</span></button>
+    </div>
+  </div>
+</div>
+<div class="scrim scrim-dialog" id="dialog-rename" role="dialog" aria-modal="true" aria-labelledby="dialog-rename-title">
+  <form class="dialog" id="rename-form">
+    <h2 class="h2" id="dialog-rename-title">Rename speaker</h2>
+    <div class="field">
+      <label for="rename-input">Name</label>
+      <input class="input" id="rename-input" type="text" placeholder="Full name" autocomplete="off" required>
+    </div>
+    <div class="dialog-actions">
+      <button class="btn btn-ghost" type="button" id="rename-cancel">Cancel</button>
+      <button class="btn btn-primary" type="submit">Save name</button>
+    </div>
+  </form>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="copy-shadow" id="copy-shadow" contenteditable="true" aria-hidden="true" tabindex="-1"></div>
+
+<script type="module" src="/static/app.js"></script>
+</body>
+</html>
